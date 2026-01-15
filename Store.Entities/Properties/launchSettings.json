@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Store.Entities": {
+      "commandName": "Project"
+    }
+  }
+}
