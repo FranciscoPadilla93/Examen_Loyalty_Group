@@ -1,0 +1,83 @@
+<div class="d-flex justify-content-end mb-3 me-3 mt-3">
+  <button class="btn btn-outline-primary position-relative">
+    🛒 Ver Carrito
+    @if (carrito.length > 0) {
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      {{ carrito.length }}
+    </span>
+    }
+  </button>
+</div>
+<div class="container mt-4">
+  <h2 class="mb-4 fw-bold text-dark">Catálogo de Productos</h2>
+
+  <div class="row">
+    @for (art of articulos; track art.idArticulo) {
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-truncate">{{ art.descripcion }}</h5>
+          <p class="text-muted small mb-1">Stock disponible: {{ art.stock }}</p>
+          <h4 class="text-primary fw-bold">{{ art.precio | currency }}</h4>
+          <button (click)="agregarAlCarrito(art)" class="btn btn-primary w-100 mt-2 shadow-sm">
+            Comprar
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  @if (carrito.length > 0) {
+  <hr class="my-5">
+  <div class="card shadow-lg border-primary mb-5">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">🛒 Resumen de Compra</h4>
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th class="ps-4">Producto</th>
+            <th class="text-center">Cant.</th>
+            <th class="text-end">Precio</th>
+            <th class="text-end">Subtotal</th>
+            <th class="text-center">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of carrito; track $index) {
+          <tr>
+            <td class="ps-4">{{ item.descripcion }}</td>
+            <td class="text-center">{{ item.cantidad }}</td>
+            <td class="text-end">{{ item.precioUnitario | currency }}</td>
+            <td class="text-end fw-bold">{{ item.subtotal | currency }}</td>
+            <td class="text-center">
+              <button (click)="eliminarDelCarrito($index)" class="btn btn-sm btn-outline-danger">
+                Quitar
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer bg-white p-4">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3 class="mb-0">Total: <span class="text-success">{{ totalCompra | currency }}</span></h3>
+        <button (click)="finalizarCompra()" [disabled]="cargando || carrito.length === 0"
+          class="btn btn-success btn-lg px-5 shadow">
+
+          @if (cargando) {
+          <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+          Procesando...
+          } @else {
+          Confirmar y Pagar
+          }
+
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+</div>

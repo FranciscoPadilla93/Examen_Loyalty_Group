@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" [routerLink]="authService.isLoggedIn() ? '/tiendas' : '/login'">
+      <span class="text-primary">Master Loyalty Group</span> | Exámen técnico 🌵
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav" *ngIf="authService.isLoggedIn()">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/articulos" routerLinkActive="text-primary">
+            <i class="bi bi-house-door"></i> Catálogo
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/tiendas" routerLinkActive="text-primary">
+            <i class="bi bi-house-door"></i> Tiendas
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/historial" routerLinkActive="text-primary">
+            <i class="bi bi-clock-history"></i> Mis Compras
+          </a>
+        </li>
+        <li class="nav-item ms-lg-3">
+          <button class="btn btn-outline-danger btn-sm" (click)="logout()">
+            Salir
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <router-outlet></router-outlet>
+</div>

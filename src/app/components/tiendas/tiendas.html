@@ -1,0 +1,78 @@
+<!-- <div class="card p-3 mb-4 shadow-sm border-0 bg-dark text-white">
+  <h5><i class="bi bi-plus-circle me-2"></i>Nueva Tienda</h5>
+  <div class="row g-2">
+    <div class="col-md-5">
+      <input type="text" class="form-control" [(ngModel)]="nuevaTienda.sucursal" placeholder="Nombre de la tienda">
+    </div>
+    <div class="col-md-5">
+      <input type="text" class="form-control" [(ngModel)]="nuevaTienda.direccion" placeholder="Dirección / Ubicación">
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-primary w-100" (click)="guardarTienda()">
+        <i class="bi bi-save"></i> Guardar
+      </button>
+    </div>
+  </div>
+</div>
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Dirección</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of tiendas">
+      <td>{{ t.idTienda }}</td>
+      <td>{{ t.sucursal }}</td>
+      <td>{{ t.direccion }}</td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="borrarTienda(t.idTienda)">Borrar</button>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+
+<div class="card p-3 mb-4 shadow-sm border-0" [ngClass]="editando ? 'bg-warning text-dark' : 'bg-dark text-white'">
+  <h5>{{ editando ? 'Editando Tienda ID: ' + idTiendaEnEdicion : 'Nueva Tienda' }}</h5>
+  <div class="row g-2">
+    <div class="col-md-4">
+      <input type="text" class="form-control" [(ngModel)]="nuevaTienda.sucursal" placeholder="Nombre">
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" [(ngModel)]="nuevaTienda.direccion" placeholder="Dirección">
+    </div>
+    <div class="col-md-4 d-flex gap-2">
+      <button class="btn" [ngClass]="editando ? 'btn-success' : 'btn-primary'" (click)="procesarTienda()">
+        {{ editando ? 'Actualizar' : 'Guardar' }}
+      </button>
+      <button *ngIf="editando" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Dirección</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (t of tiendas; track t.idTienda) {
+    <tr>
+      <td>{{ t.idTienda || t.IdTienda }}</td>
+      <td>{{ t.sucursal || t.Sucursal }}</td>
+      <td>{{ t.direccion || t.Direccion }}</td>
+      <td class="d-flex gap-2">
+        <button class="btn btn-warning btn-sm" (click)="prepararEdicion(t)">Editar</button>
+        <button class="btn btn-danger btn-sm" (click)="borrarTienda(t.idTienda || t.IdTienda)">Borrar</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

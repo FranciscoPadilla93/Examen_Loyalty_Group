@@ -1,0 +1,29 @@
+<div class="card shadow border-0">
+  <div class="card-header bg-white py-3">
+    <h3 class="fw-bold mb-0">📜 Mi Historial de Compras</h3>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Folio</th>
+          <th>Fecha</th>
+          <th>Total</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (venta of ventas; track venta.idCarrito) {
+        <tr>
+          <td>#{{ venta.idCarrito }}</td>
+          <td>{{ venta.fechaAdd | date:'short' }}</td>
+          <td class="fw-bold text-success">{{ venta.total | currency }}</td>
+          <td>
+            <span class="badge bg-info text-dark">{{ venta.estatus }}</span>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
