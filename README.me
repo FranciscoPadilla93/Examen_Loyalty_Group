@@ -1,0 +1,45 @@
+# Examen Técnico - Master Loyalty Group
+
+Este proyecto consiste en un sistema de gestión de tiendas desarrollado con una arquitectura desacoplada utilizando **.NET** para el Backend y **Angular** para el Frontend.
+
+## Tecnologías Utilizadas
+
+* **Backend:** ASP.NET Core Web API, Dapper (Micro-ORM).
+* **Database:** SQL Server (Stored Procedures).
+* **Frontend:** Angular 17+ (Standalone Components), Bootstrap 5.
+* **Autenticación:** JWT o validación de sesión mediante LocalStorage.
+
+##  Estructura del Proyecto
+
+* `/BackEnd`: Solución de C# con la lógica de API, Servicios y Repositorios.
+* `/Front End`: Aplicación de Angular con componentes para Gestión de Tiendas y Login.
+* `/SQL`: Scripts de creación de tablas y procedimientos almacenados (CRUD).
+
+##  Instalación y Configuración
+
+### 1. Base de Datos
+1. Ejecuta los scripts ubicados en la carpeta `/SQL` en tu instancia de SQL Server.
+2. Actualiza la cadena de conexión (`ConnectionStrings`) en el archivo `appsettings.json` dentro de la carpeta `BackEnd`.
+
+### 2. Backend (.NET)
+1. Abre la carpeta `BackEnd` en Visual Studio o VS Code.
+2. Ejecuta `dotnet restore` para restaurar los paquetes.
+3. Inicia la API (asegúrate de que corra en el puerto configurado, por defecto `7003`).
+
+### 3. Frontend (Angular)
+1. Abre una terminal en la carpeta `Front End`.
+2. Ejecuta `npm install` para descargar las dependencias.
+3. Ejecuta `ng serve` para iniciar el servidor de desarrollo.
+4. Navega a `http://localhost:4200`.
+
+##  Funcionalidades Implementadas
+
+- [x] **Seguridad:** Login de usuario y protección de rutas en el Navbar.
+- [x] **CRUD de Tiendas:** - Listado dinámico con detección de cambios.
+    - Creación y edición compartiendo lógica de formulario.
+    - Eliminación lógica/física mediante Stored Procedures.
+- [x] **Navbar Dinámico:** El menú se oculta si no hay una sesión activa.
+- [x] **Manejo de Errores:** Validaciones en procedimientos almacenados con parámetros de salida (`Success`, `Message`).
+
+---
+**Desarrollado como parte del proceso de evaluación técnica.**
